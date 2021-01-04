@@ -139,7 +139,7 @@ dependencies {
 2. 同步后会在src/main下发现一个api文件，手动创建名字为 ${package}.api 的包，例如org.component.a.api,创建完成后开始注册组建api。
 
 ``` java
-// @host为本组件的host路径，建议每个组建用一个host
+// @host为本组件的host路径，建议一个组建用一个host
 // @Controller中填入实现类的全路径，用来自动映射
 // @Path 方法的path
 // @Id 用来标示此次调用，用来进行结果返回
