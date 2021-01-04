@@ -80,6 +80,12 @@ CRouter.init(getApplication());
 CRouterLogger.debugger(BuildConfig.DEBUG);
 ```
 
+base组建的build.gradle中添加CRouter核心库依赖
+
+最外层的build.gradle中添加CRouter-plugin的依赖
+
+每个子组件中添加CRouter-processor的依赖以及插件
+
 manifest里添加全局默认d的cheme：
 ``` xml
 <meta-data android:name="org.hfyd.component.crouter.SCHEME" android:value="czb365"/>
@@ -201,7 +207,7 @@ CRouter.newInstance()
 ```
 
 2. api调用
-   1. 在client端的build.gradle中添加server端组件api的依赖
+1) 在client端的build.gradle中添加server端组件api的依赖
 
 ``` groovy
 dependencies {
@@ -210,7 +216,7 @@ dependencies {
 }
 ```
 
-   2. api调用
+2) api调用
 ``` java
     
 // 获取ModuleB对外暴露的接口
