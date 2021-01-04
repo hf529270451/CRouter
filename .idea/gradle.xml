@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/crouter-plugin" name="crouter-plugin">
+                <projects>
+                  <project path="$PROJECT_DIR$/crouter-plugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/component_a" />
+            <option value="$PROJECT_DIR$/component_b" />
+            <option value="$PROJECT_DIR$/component_c" />
+            <option value="$PROJECT_DIR$/crouter" />
+            <option value="$PROJECT_DIR$/crouter-anno" />
+            <option value="$PROJECT_DIR$/crouter-plugin" />
+            <option value="$PROJECT_DIR$/crouter-processor" />
+            <option value="$PROJECT_DIR$/test" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>org.hfyd.component.b</groupId>
+  <artifactId>api</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20210104.033651</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20210104033651</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.1-20210104.033651-1</value>
+        <updated>20210104033651</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.1-20210104.033651-1</value>
+        <updated>20210104033651</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

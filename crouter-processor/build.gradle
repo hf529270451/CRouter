@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+group 'org.hfyd.component.crouter'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":crouter-anno")
+    implementation 'com.google.auto.service:auto-service:1.0-rc3'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    implementation 'com.google.auto:auto-common:0.8'
+    implementation 'com.squareup:javapoet:1.8.0'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'crouter'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        CROUTER_SCHEME: "",
+                        CROUTER_API_PACKAGE: "org.hfyd.component.b.api"
+                ]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/api']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':base')
+    annotationProcessor project(":crouter-processor")
+
+    compileApi 'org.hfyd.component.a:api:1.0.2-SNAPSHOT'
+    compileApi 'org.hfyd.component.c:api:1.0.2-SNAPSHOT'
+}
+
+crouter {
+    publishConfig = publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId "org.hfyd.component.b"
+                artifactId "api"
+                version "1.0.1-SNAPSHOT"
+            }
+        }
+
+        repositories {
+            maven {
+                url = rootProject.file('./repo')
+            }
+        }
+    }
+}
+
+

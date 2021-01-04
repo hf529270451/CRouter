@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.hfyd.component.c">
+
+    <application>
+
+        <activity android:name=".ModuleC1Activity"/>
+        <activity android:name=".ModuleC2Activity"/>
+        <activity android:name=".ModuleCSchemeUriActivity"/>
+
+    </application>
+
+</manifest>

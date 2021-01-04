@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+group 'org.hfyd.component.crouter'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

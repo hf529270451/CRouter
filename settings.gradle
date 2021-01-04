@@ -1,0 +1,12 @@
+rootProject.name='DynamicComponent'
+include ':app'
+include ':crouter'
+
+includeBuild './crouter-plugin'
+include ':crouter-processor'
+include ':crouter-anno'
+include ':component_a'
+include ':component_b'
+include ':base'
+include ':component_c'
+include ':test'

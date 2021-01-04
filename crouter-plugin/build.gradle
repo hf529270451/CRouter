@@ -1,0 +1,33 @@
+apply plugin: 'groovy'
+
+group 'org.hfyd.component.crouter'
+
+repositories {
+    google()
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+    compile localGroovy()
+
+    compile 'org.ow2.asm:asm:6.0'
+    compile 'org.ow2.asm:asm-commons:6.0'
+    compile 'org.ow2.asm:asm-analysis:6.0'
+    compile 'org.ow2.asm:asm-util:6.0'
+    compile 'org.ow2.asm:asm-tree:6.0'
+    compileOnly 'com.android.tools.build:gradle:3.6.1', {
+        exclude group:'org.ow2.asm'
+    }
+}
+
+/*ext {
+    isRemote = false
+    PUBLISH_GROUP_ID = 'org.hfyd.component.crouter'
+    PUBLISH_ARTIFACT_ID = 'crouter-plugin'
+    PUBLISH_VERSION = '0.0.1-SNAPSHOT'
+}
+
+apply from: rootProject.file('publish.gradle')*/
