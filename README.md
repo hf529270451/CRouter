@@ -6,7 +6,7 @@ CRouter为Android的组件化路由框架，融合了scheme字符串协议以及
 - api方法调用：通过直接调用组件暴露出来的接口方法进行调用，Client组件与Server组件只依赖接口，不依赖实现，调用方式简单易懂，隐藏了scheme字符串复杂的调用协议。
 
 例如：
-```
+``` java
 // 获取ModuleB对外暴露的接口
 final ModuleAServerControllerApi api = CRouter.api(ModuleAServerControllerApi.class);
 
@@ -17,7 +17,7 @@ RouterResult result = api.getModuleAInfo(new ModuleAParam("ModuleAParam1"), 123)
 - scheme字符串协议调用：通过scheme协议调用对应组件暴露的方法，更加灵活，在做混合开发路由打通的时候有意想不到的效果。
 
 例如：
-```
+``` java
 RouterResult result = CRouter.newInstance()
                 .with(MainActivity.this)
                 .scheme("myScheme")
@@ -31,7 +31,7 @@ RouterResult result = CRouter.newInstance()
 - 无缝支持scheme uri，当后端下发scheme uri字符串的时候可以自动转换调用
 
 例如：
-```
+``` java
 // 调用moduleC的方法
 RouterResult result = CRouter.newInstance()
                         .with(MainActivity.this)
@@ -82,7 +82,7 @@ CRouterLogger.debugger(BuildConfig.DEBUG);
 
 #### Server组建注册：
 1. Server组建的build.gradle中添加，添加后同步gradle：
-```
+``` groovy
 apply plugin: 'crouter'
 
 crouter {
@@ -111,7 +111,7 @@ dependencies {
 
 2. 同步后会在src/main下发现一个api文件，手动创建名字为 ${package}.api 的包，例如org.component.a.api,创建完成后开始注册组建api。
 
-```
+``` java
 // @host为本组件的host路径，建议每个组建用一个host
 // @Controller中填入实现类的全路径，用来自动映射
 // @Path 方法的path
