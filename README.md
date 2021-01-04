@@ -43,7 +43,7 @@ RouterResult result = CRouter.newInstance()
 - 类似于spring的参数注入，参数自动拆装箱，更直观。
 
 例如：
-```
+``` java
 @Host("moduleA")
 @Controller("org.hfyd.component.a.ModuleAServerControllerImpl")
 public interface ModuleAServerController {
@@ -72,7 +72,7 @@ public interface ModuleAServerController {
 
 #### 初始化
 Application中添加：
-```
+``` java
 // 初始化以及自动注册组建
 CRouter.init(getApplication());
 
@@ -80,10 +80,31 @@ CRouter.init(getApplication());
 CRouterLogger.debugger(BuildConfig.DEBUG);
 ```
 
+manifest里添加全局默认d的cheme：
+``` xml
+<meta-data android:name="org.hfyd.component.crouter.SCHEME" android:value="czb365"/>
+```
+
 #### Server组建注册：
 1. Server组建的build.gradle中添加，添加后同步gradle：
 ``` groovy
 apply plugin: 'crouter'
+
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        // CROUTER_SCHEME：非必填，为设置单个组建的scheme前缀，默认manifest里全局的scheme
+                        CROUTER_SCHEME     : "",
+                        // CROUTER_API_PACKAGE：必填，src/main/${package}.api路径，这个路径下所有对外
+                        // 暴露的接口会被打到jar包里。
+                        CROUTER_API_PACKAGE: "org.hfyd.component.a.api"
+                ]
+            }
+        }
+    }
+}
 
 crouter {
     // 内部为maven-publish插件 用来上传api接口
@@ -116,10 +137,12 @@ dependencies {
 // @Controller中填入实现类的全路径，用来自动映射
 // @Path 方法的path
 // @Id 用来标示此次调用，用来进行结果返回
-// @Param 用来表示参数
+// @Param 用来表示参数，参数中对外暴露的对象也需要声明在api文件夹下
 // Context 每个方法会自动注入一个Context，即调用方with(Context)传过来的
 
-// 在${package}.api下创建要向外暴露的接口
+// 在${package}.api下创建要向外暴露的接口,
+// rebuild后会自动生成ModuleAServerControllerApi和ModuleAServerController_ServerController
+// ModuleAServerControllerApi为client端调用的api，ModuleAServerController_ServerController为事件分发的类
 @Host("moduleA")
 @Controller("org.hfyd.component.a.ModuleAServerControllerImpl")
 public interface ModuleAServerController {
@@ -153,6 +176,49 @@ public class ModuleAServerControllerImpl implements ModuleAServerController {
 }
 
 ```
+
+3. 如果需要方法调用，执行crouter下的publishApiToMaven 将api接口上传到maven仓库，如果是scheme字符串调用，不需要调用task。
+
+#### Client组建调用：
+1. scheme直接调用：
+``` java
+CRouter.newInstance()
+                // contxt
+                .with(MainActivity.this)
+                // scheme可不填，默认为全局在manifest里面注册的
+                .scheme("myScheme")
+                // host
+                .host("moduleB")
+                // path
+                .path("/getModuleAInfo")
+                // 参数
+                .param("p1", 123")
+                // 同步调用，也可以routerAsync异步调用
+                .routeSync();
+
+```
+
+2. api调用
+   1. 在client端的build.gradle中添加server端组件api的依赖
+
+``` groovy
+dependencies {
+    compileApi 'org.hfyd.component.b:api:1.0.1-SNAPSHOT'
+    compileApi 'org.hfyd.component.c:api:1.0.3-SNAPSHOT'
+}
+```
+
+   2. api调用
+``` java
+    
+// 获取ModuleB对外暴露的接口
+final ModuleAServerControllerApi api = CRouter.api(ModuleAServerControllerApi.class);
+
+// 同步调用
+RouterResult result = api.getModuleAInfo(new ModuleAParam("ModuleAParam1"), 123).routeSync();
+```
+
+
 
 
 
