@@ -10,6 +10,7 @@ import android.view.View;
 import org.hfyd.component.a.api.ModuleAParam;
 import org.hfyd.component.a.api.ModuleAServerControllerApi;
 import org.hfyd.component.crouter.CRouter;
+import org.hfyd.component.crouter.core.CRouterLogger;
 import org.hfyd.component.crouter.core.client.RouterCallback;
 import org.hfyd.component.crouter.core.client.RouterResult;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CRouter.init(getApplication());
+        CRouterLogger.debugger(BuildConfig.DEBUG);
     }
 
     public void getModuleAInfo(View view) {
