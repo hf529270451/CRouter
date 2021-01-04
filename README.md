@@ -162,6 +162,7 @@ public class ModuleAServerControllerImpl implements ModuleAServerController {
     @Override
     public void getModuleAInfo(String callId, ModuleAParam p1, long p2) {
         Log.e("CRouter", "module:ModuleA method:getModuleAInfo params:{p1:" + p1 + ",p2:" + p2 + "}");
+        // ResponseDispatch返回结果
         ResponseDispatch.send(callId, ResponseResult.success(new ModuleAResult(p1.getName(), p2)));
     }
 
@@ -171,6 +172,7 @@ public class ModuleAServerControllerImpl implements ModuleAServerController {
         intent.putExtra("p1", p1);
         intent.putExtra("p2", p2);
         context.startActivity(intent);
+        // ResponseDispatch返回结果
         ResponseDispatch.send(callId, ResponseResult.success(new ModuleAResult("startModuleAActivityResult", 100)));
     }
 }
